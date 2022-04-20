@@ -19,12 +19,14 @@
         
         
         
-		<div class="content post__content clearfix"><p>In class, we&rsquo;ll learn how shadow maps work. Fortunately, you don&rsquo;t have to implement them (there are some tricky details), since they are built into THREE.</p>
+		<div class="content post__content clearfix"><div class="dimbox">
+                    <h3>CS559 Spring 2022 Sample Solution</h3>
+                </div><p>In class, we&rsquo;ll learn how shadow maps work. Fortunately, you don&rsquo;t have to implement them (there are some tricky details), since they are built into THREE.</p>
 <p>Shadow maps are different than other kinds of maps. They are pictures made from cameras positioned at the light sources. We don&rsquo;t use them for colors (or surface properties), we use them for depth testing (to see if the camera at the light source can see each point in the scene). The lookups are depth tests that turn light on and off. This will be explained in class, and is discussed in Section 11.4.4 of the required reading.</p>
 <p>Implementing shadow maps can be tricky. Fortunately, they are built into THREE.</p>
 <p>THREE makes it pretty easy to use shadow maps. All you need to do is:</p>
 <ol>
-<li>Make sure that your renderer has <code>shadowMapEnabled</code> set to true.</li>
+<li>Make sure that your renderer has <code>shadowMap.enabled</code> set to true.</li>
 <li>Make sure that you set the appropriate properties for objects. Some objects should cast shadows, and some objects should receive shadows. You need to use the <code>castShadow</code> and <code>receiveShadow</code> of objects.</li>
 <li>Make sure your lights are set to <code>castShadow</code>. It&rsquo;s easiest to use shadows with spot lights (for reasons we&rsquo;ll discuss in class).</li>
 </ol>

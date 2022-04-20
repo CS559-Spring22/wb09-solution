@@ -1,3 +1,8 @@
+/**
+ * CS559 Spring 2022 Example Solution
+ * Written by CS559 course staff
+ */
+
 /*jshint esversion: 6 */
 // @ts-check
 
@@ -13,15 +18,20 @@ import * as Simple from "../libs/CS559-Framework/SimpleObjects.js";
  * @param {number} [speed=1] - rotations per second
  */
 function spinY(obj, speed = 1) {
-  obj.stepWorld = function(delta, timeOfDay) {
+  obj.stepWorld = function (delta, timeOfDay) {
     obj.objects.forEach(obj => obj.rotateY(((speed * delta) / 1000) * Math.PI));
   };
   return obj;
 }
 
+// Begin Example Solution
+let spotLight = new T.SpotLight("white", 1, 100);
+spotLight.position.set(0, 5, 0);
+// End Example Solution
+
 function test() {
   let parentOfCanvas = document.getElementById("div1");
-  let world = new GrWorld({ where: parentOfCanvas });
+  let world = new GrWorld({ where: parentOfCanvas, lights: [spotLight]});
 
   /**
    * Some Stuff in the world to cast and receive shadows
@@ -55,6 +65,11 @@ function test() {
    * it's about 15 lines (with a recursive "loop" to enable shadows for all objects)
    * but you can also just turn things on as you make objects
    */
+  // Begin Example Solution
+  world.scene.traverse(o => o.castShadow = true);
+  world.scene.traverse(o => o.receiveShadow = true);
+  world.renderer.shadowMapEnabled = true;
+  // End Example Solution
 
   world.go();
 }
